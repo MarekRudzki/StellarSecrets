@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:stellar_secrets/home_screen.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
+      theme: ThemeData(
+        colorScheme: const ColorScheme.dark(
+          background: Color.fromRGBO(0, 31, 63, 1),
+          primary: Color.fromRGBO(0, 31, 63, 1),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

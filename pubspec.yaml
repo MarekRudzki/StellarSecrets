@@ -7,8 +7,11 @@ environment:
   sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
+  dotenv: ^4.2.0
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.20.4
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: MyIcons
+      fonts:
+      - asset: assets/MyIcons.ttf
+  assets:
+    - .env
+    - assets/
