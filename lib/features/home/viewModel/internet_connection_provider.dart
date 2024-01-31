@@ -1,20 +1,25 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-class InternetConnectionProvider extends StateNotifier<bool> {
-  InternetConnectionProvider() : super(true) {
+class InternetConnectionProvider extends ChangeNotifier {
+  bool _hasInternet = true;
+
+  bool get hasInternet => _hasInternet;
+
+  InternetConnectionProvider() {
     startInternetListener();
   }
 
   void startInternetListener() {
     InternetConnectionChecker().onStatusChange.listen((status) {
-      status == InternetConnectionStatus.connected
-          ? state = true
-          : state = false;
+      if (status == InternetConnectionStatus.connected) {
+        _hasInternet = true;
+        notifyListeners();
+      } else {
+        _hasInternet = false;
+        notifyListeners();
+      }
     });
   }
 }
-
-final hasNetwork = StateNotifierProvider((ref) {
-  return InternetConnectionProvider();
-});

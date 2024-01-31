@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stellar_secrets/features/daily/view/daily_screen.dart';
+import 'package:stellar_secrets/features/daily_picture/view/daily_picture_screen.dart';
 import 'package:stellar_secrets/features/home/view/no_network_screen.dart';
 import 'package:stellar_secrets/features/home/viewModel/internet_connection_provider.dart';
+import 'package:stellar_secrets/features/random_picture/random_screen.dart';
 import 'package:stellar_secrets/utils/icons.dart';
-import 'package:stellar_secrets/features/random/random_screen.dart';
 
-class HomeScreen extends HookConsumerWidget {
+class HomeScreen extends HookWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final _hasInternet = ref.watch(hasNetwork)! as bool;
+  Widget build(BuildContext context) {
+    final _hasInternet =
+        context.watch<InternetConnectionProvider>().hasInternet;
     final _pageIndex = useState(0);
 
     final List<Widget> _pages = [
-      const DailyScreen(),
-      const RandomScreen(),
+      const DailyPictureScreen(),
+      const RandomPictureScreen(),
     ];
 
     return SafeArea(
@@ -39,16 +40,16 @@ class HomeScreen extends HookConsumerWidget {
                 ),
                 tabs: [
                   GButton(
-                    icon: MyIcons.daily,
-                    text: 'Daily',
+                    icon: MyIcons.dailyPicture,
+                    text: 'Daily picture',
                     onPressed: () {
                       _pageIndex.value = 0;
                     },
                     iconSize: 30,
                   ),
                   GButton(
-                    icon: MyIcons.random,
-                    text: 'Random',
+                    icon: MyIcons.randomPicture,
+                    text: 'Random picture',
                     onPressed: () {
                       _pageIndex.value = 1;
                     },

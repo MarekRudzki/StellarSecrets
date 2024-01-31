@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class DailyDataRemoteDatasource {
-  Future<Map<String, dynamic>> getDailyData() async {
+class DailyPictureRemoteDatasource {
+  Future<Map<String, dynamic>> getDailyPicture() async {
     final apiKey = dotenv.env['NASA_api_key'];
     final String url = 'https://api.nasa.gov/planetary/apod?api_key=$apiKey';
 

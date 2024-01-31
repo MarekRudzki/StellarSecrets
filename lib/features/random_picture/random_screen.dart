@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DailyScreen extends StatelessWidget {
-  const DailyScreen({super.key});
+class RandomPictureScreen extends StatelessWidget {
+  const RandomPictureScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

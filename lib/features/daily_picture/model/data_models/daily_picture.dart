@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class DailyData extends Equatable {
+class DailyPicture extends Equatable {
   final String copyright;
   final String explanation;
   final String hdurl;
   final String title;
   final String url;
 
-  DailyData({
+  DailyPicture({
     required this.copyright,
     required this.explanation,
     required this.hdurl,
@@ -15,8 +15,8 @@ class DailyData extends Equatable {
     required this.url,
   });
 
-  factory DailyData.fromJson(Map<String, dynamic> json) {
-    return DailyData(
+  factory DailyPicture.fromJson(Map<String, dynamic> json) {
+    return DailyPicture(
       copyright: json['copyright'] as String,
       explanation: json['explanation'] as String,
       hdurl: json['hdurl'] as String,
