@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="stellar_secrets"
+        android:label="Stellar Secrets"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

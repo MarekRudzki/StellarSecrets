@@ -7,9 +7,11 @@ environment:
   sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
-  dotenv: ^4.2.0
+  dio: ^5.4.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.1.0
   flutter_hooks: ^0.20.4
   flutter_riverpod: ^2.4.9
   google_nav_bar: ^5.0.6

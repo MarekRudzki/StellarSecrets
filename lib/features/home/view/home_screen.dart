@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:stellar_secrets/features/daily/daily_screen.dart';
+import 'package:stellar_secrets/features/daily/view/daily_screen.dart';
 import 'package:stellar_secrets/features/home/view/no_network_screen.dart';
 import 'package:stellar_secrets/features/home/viewModel/internet_connection_provider.dart';
 import 'package:stellar_secrets/utils/icons.dart';
