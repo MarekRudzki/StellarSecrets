@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.4
+  flutter_riverpod: ^2.4.9
   google_nav_bar: ^5.0.6
+  hooks_riverpod: ^2.4.9
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:

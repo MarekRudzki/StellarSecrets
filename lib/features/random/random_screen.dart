@@ -8,6 +8,8 @@ class RandomScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Random'),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
     );
   }

@@ -9,6 +9,7 @@ class DailyScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Daily'),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
     );
   }
