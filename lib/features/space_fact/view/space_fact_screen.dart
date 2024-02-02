@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stellar_secrets/features/space_fact/view/fact_details.dart';
 import 'package:stellar_secrets/features/space_fact/viewModel/bloc/space_fact_bloc.dart';
 import 'package:stellar_secrets/utils/enums.dart';
 
-class SpaceFactScreen extends StatelessWidget {
+class SpaceFactScreen extends HookWidget {
   final CurrentView currentView;
 
   const SpaceFactScreen({
@@ -21,32 +22,6 @@ class SpaceFactScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      floatingActionButton: currentView == CurrentView.random
-          ? SizedBox(
-              height: 45,
-              child: FloatingActionButton.extended(
-                  onPressed: () {
-                    context
-                        .read<SpaceFactBloc>()
-                        .add(RandomSpaceFactRequsted());
-                  },
-                  label: const Row(
-                    children: [
-                      Icon(
-                        Icons.refresh,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'New fact',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  )),
-            )
-          : null,
       body: BlocBuilder<SpaceFactBloc, SpaceFactState>(
         builder: (context, state) {
           if (state is SpaceFactLoading) {

@@ -2,8 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:photo_view/photo_view.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/fact_title.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/hd_image_button.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/loading_hd_info.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/new_fact_button.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/photo_copyright.dart';
+import 'package:stellar_secrets/features/space_fact/view/widgets/photo_date.dart';
 import 'dart:ui' as ui;
+
+import 'package:stellar_secrets/features/space_fact/view/widgets/zoom_image_button.dart';
 
 class FactDetails extends HookWidget {
   final String copyright;
@@ -56,92 +63,18 @@ class FactDetails extends HookWidget {
                         isImageHD.value ? hdUrl : url,
                       ),
                     ),
-                    Positioned(
-                      bottom: 70.0,
-                      right: 10.0,
-                      child: CircleAvatar(
-                        radius: 25,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.hd_outlined,
-                            size: 28,
-                            color: isImageHD.value ? Colors.green : Colors.grey,
-                          ),
-                          onPressed: () {
-                            isImageHD.value = !isImageHD.value;
-                            isImageHDLoading.value = isImageHD.value;
-                          },
-                        ),
+                    if (url != hdUrl)
+                      HDImageButton(
+                        isImageHD: isImageHD.value,
+                        onPressed: () {
+                          isImageHD.value = !isImageHD.value;
+                          isImageHDLoading.value = isImageHD.value;
+                        },
                       ),
-                    ),
-                    Positioned(
-                      bottom: 10.0,
-                      right: 10.0,
-                      child: CircleAvatar(
-                        radius: 25,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.search,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => Dialog(
-                                insetPadding:
-                                    const EdgeInsets.symmetric(horizontal: 2),
-                                backgroundColor: Colors.black,
-                                child: PhotoView(
-                                  basePosition: Alignment.topCenter,
-                                  imageProvider: NetworkImage(
-                                    url,
-                                  ),
-                                  minScale: PhotoViewComputedScale.contained,
-                                  maxScale: PhotoViewComputedScale.covered * 4,
-                                  controller: PhotoViewController(),
-                                  tightMode: true,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    // if (isImageHDLoading.value)
-                    //   const Positioned(
-                    //     top: 80.0,
-                    //     right: 50.0,
-                    //     child: Text(
-                    //       'Loading HD image',
-                    //       textAlign: TextAlign.center,
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 18,
-                    //         fontFamily: 'AclonicaRegular',
-                    //         shadows: [
-                    //           Shadow(
-                    //             blurRadius: 6.0,
-                    //             offset: Offset(
-                    //               0.0,
-                    //               5.0,
-                    //             ),
-                    //           ),
-                    //           Shadow(
-                    //             blurRadius: 6.0,
-                    //             offset: Offset(
-                    //               5.0,
-                    //               0.0,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
+                    ZoomImageButton(
+                        url: isImageHD.value && !isImageHDLoading.value
+                            ? hdUrl
+                            : url),
                     Align(
                       alignment: Alignment.topCenter,
                       child: Padding(
@@ -151,62 +84,8 @@ class FactDetails extends HookWidget {
                         ),
                         child: Column(
                           children: [
-                            Text(
-                              title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 21,
-                                fontFamily: 'AclonicaRegular',
-                                shadows: [
-                                  Shadow(
-                                    blurRadius: 6.0,
-                                    offset: Offset(
-                                      0.0,
-                                      5.0,
-                                    ),
-                                  ),
-                                  Shadow(
-                                    blurRadius: 6.0,
-                                    offset: Offset(
-                                      5.0,
-                                      0.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (isImageHDLoading.value)
-                              const Column(
-                                children: [
-                                  SizedBox(height: 50),
-                                  Text(
-                                    'Loading HD image',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      fontFamily: 'AclonicaRegular',
-                                      shadows: [
-                                        Shadow(
-                                          blurRadius: 6.0,
-                                          offset: Offset(
-                                            0.0,
-                                            5.0,
-                                          ),
-                                        ),
-                                        Shadow(
-                                          blurRadius: 6.0,
-                                          offset: Offset(
-                                            5.0,
-                                            0.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
+                            FactTitle(title: title),
+                            if (isImageHDLoading.value) const LoadingHDInfo(),
                           ],
                         ),
                       ),
@@ -214,62 +93,28 @@ class FactDetails extends HookWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    10,
-                    15,
-                    10,
-                    date == '' ? 15 : 30,
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: Column(
                     children: [
                       Text(
                         description,
                         textAlign: TextAlign.justify,
-                        style: const TextStyle(),
                       ),
-                      if (copyright != '')
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            children: [
-                              const Text(
-                                'Photo copyright: ',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  copyright.replaceAll('\n', ''),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                if (copyright != '')
+                                  PhotoCopyright(copyright: copyright),
+                                if (date != '') PhotoDate(date: date),
+                              ],
+                            ),
                           ),
-                        ),
-                      if (date != '')
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            children: [
-                              const Text(
-                                'Photo date: ',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Text(
-                                date,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                          if (date != '') const NewFactButton(),
+                        ],
+                      )
                     ],
                   ),
                 ),
