@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:stellar_secrets/features/space_fact/view/daily_space_fact_screen.dart';
 import 'package:stellar_secrets/features/home/view/no_network_screen.dart';
 import 'package:stellar_secrets/features/home/viewModel/internet_connection_provider.dart';
-import 'package:stellar_secrets/features/space_fact/view/random_space_fact_screen.dart';
+import 'package:stellar_secrets/features/space_fact/view/space_fact_screen.dart';
+import 'package:stellar_secrets/utils/enums.dart';
 import 'package:stellar_secrets/utils/icons.dart';
 
 class HomeScreen extends HookWidget {
@@ -18,8 +18,8 @@ class HomeScreen extends HookWidget {
     final _pageIndex = useState(0);
 
     final List<Widget> _pages = [
-      const DailySpaceFactScreen(),
-      const RandomSpaceFactScreen(),
+      const SpaceFactScreen(currentView: CurrentView.daily),
+      const SpaceFactScreen(currentView: CurrentView.random),
     ];
 
     return SafeArea(

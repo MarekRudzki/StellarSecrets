@@ -24,15 +24,4 @@ final class SpaceFactSuccess extends SpaceFactState {
       ];
 }
 
-final class SpaceFactError extends SpaceFactState {
-  final String errorMessage;
-
-  SpaceFactError({
-    required this.errorMessage,
-  });
-
-  @override
-  List<Object> get props => [
-        errorMessage,
-      ];
-}
+final class SpaceFactError extends SpaceFactState {}

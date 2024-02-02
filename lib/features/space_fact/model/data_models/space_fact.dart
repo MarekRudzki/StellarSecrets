@@ -24,7 +24,7 @@ class SpaceFact extends Equatable {
       description: json['explanation'] as String,
       hdUrl: (json['hdurl'] as String?) ?? '',
       title: json['title'] as String,
-      url: json['url'] as String,
+      url: (json['url'] as String?) ?? '',
     );
   }
 
