@@ -17,7 +17,7 @@ class LoadingHDInfo extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 16,
                 fontFamily: 'AclonicaRegular',
                 shadows: [
                   Shadow(
@@ -39,7 +39,7 @@ class LoadingHDInfo extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             SizedBox(
-              height: 15,
+              height: 12,
               child: JumpingDots(
                 color: Colors.white,
                 verticalOffset: -8,

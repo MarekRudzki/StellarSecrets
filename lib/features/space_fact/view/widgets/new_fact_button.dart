@@ -7,29 +7,26 @@ class NewFactButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 10, 0, 0),
-      child: Material(
-        elevation: 10,
-        child: Container(
-          height: 45,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Theme.of(context).colorScheme.primaryContainer,
+    return Material(
+      elevation: 10,
+      child: Container(
+        height: 45,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).colorScheme.primaryContainer,
+        ),
+        child: TextButton.icon(
+          onPressed: () {
+            context.read<SpaceFactBloc>().add(RandomSpaceFactRequsted());
+          },
+          icon: const Icon(
+            Icons.refresh,
+            color: Colors.white,
           ),
-          child: TextButton.icon(
-            onPressed: () {
-              context.read<SpaceFactBloc>().add(RandomSpaceFactRequsted());
-            },
-            icon: const Icon(
-              Icons.refresh,
+          label: const Text(
+            'New fact',
+            style: TextStyle(
               color: Colors.white,
-            ),
-            label: const Text(
-              'New fact',
-              style: TextStyle(
-                color: Colors.white,
-              ),
             ),
           ),
         ),

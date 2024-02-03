@@ -101,20 +101,19 @@ class FactDetails extends HookWidget {
                         description,
                         textAlign: TextAlign.justify,
                       ),
-                      Row(
+                      Column(
                         children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                if (copyright != '')
-                                  PhotoCopyright(copyright: copyright),
-                                if (date != '') PhotoDate(date: date),
-                              ],
-                            ),
-                          ),
-                          if (date != '') const NewFactButton(),
+                          if (copyright != '')
+                            PhotoCopyright(copyright: copyright),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              if (date != '') PhotoDate(date: date),
+                              if (date != '') const NewFactButton(),
+                            ],
+                          )
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
