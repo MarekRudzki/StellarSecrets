@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class SpaceFactRemoteDataSource {
+class NASARemoteDataSource {
   final apiKey = dotenv.env['NASA_api_key'];
 
   Future<Map<String, dynamic>> getDailySpaceFact() async {

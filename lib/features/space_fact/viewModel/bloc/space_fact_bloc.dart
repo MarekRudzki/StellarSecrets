@@ -21,9 +21,24 @@ class SpaceFactBloc extends Bloc<SpaceFactEvent, SpaceFactState> {
     DailySpaceFactRequested event,
     Emitter<SpaceFactState> emit,
   ) async {
+    final todayDate = DateTime.now().toString().substring(0, 10);
+    final SpaceFact dailySpaceFact;
     emit(SpaceFactLoading());
     try {
-      final dailySpaceFact = await spaceFactRepository.getDailySpaceFact();
+      final isSpaceFactSaved = spaceFactRepository.checkIfDailyFactIsSaved(
+        date: todayDate,
+      );
+
+      if (isSpaceFactSaved) {
+        dailySpaceFact = spaceFactRepository.getSavedSpaceFact(date: todayDate);
+      } else {
+        dailySpaceFact = await spaceFactRepository.getDailySpaceFact();
+        await spaceFactRepository.addDailySpaceFact(
+          date: todayDate,
+          spaceFact: dailySpaceFact,
+        );
+      }
+
       emit(SpaceFactSuccess(spaceFact: dailySpaceFact));
     } catch (e) {
       debugPrint(e.toString());

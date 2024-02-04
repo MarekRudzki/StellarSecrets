@@ -25,6 +25,15 @@ void main() {
     url: 'daily_url.jpg',
   );
 
+  final SpaceFact dailyHiveSpaceFact = SpaceFact(
+    copyright: 'daily_hive_copyright',
+    date: 'daily_hive_date',
+    description: 'daily_hive_description',
+    hdUrl: 'daily_hive_hdUrl.jpg',
+    title: 'daily_hive_title',
+    url: 'daily_hive_url.jpg',
+  );
+
   final SpaceFact randomSpaceFact = SpaceFact(
     copyright: 'random_copyright',
     date: 'random_date',
@@ -36,10 +45,34 @@ void main() {
 
   group('Space fact bloc', () {
     blocTest<SpaceFactBloc, SpaceFactState>(
+      'emits [SpaceFactLoading] and [SpaceFactSuccess] when DailySpaceFactRequested is added and spaceFact is saved in memory.',
+      build: () {
+        when(() => spaceFactRepository.checkIfDailyFactIsSaved(
+            date: any(named: 'date'))).thenReturn(true);
+        when(() =>
+                spaceFactRepository.getSavedSpaceFact(date: any(named: 'date')))
+            .thenReturn(dailyHiveSpaceFact);
+
+        return sut;
+      },
+      act: (bloc) => sut.add(DailySpaceFactRequested()),
+      expect: () => [
+        SpaceFactLoading(),
+        SpaceFactSuccess(spaceFact: dailyHiveSpaceFact),
+      ],
+    );
+
+    blocTest<SpaceFactBloc, SpaceFactState>(
       'emits [SpaceFactLoading] and [SpaceFactSuccess] when DailySpaceFactRequested is added.',
       build: () {
+        when(() => spaceFactRepository.checkIfDailyFactIsSaved(
+            date: any(named: 'date'))).thenReturn(false);
+
         when(() => spaceFactRepository.getDailySpaceFact())
             .thenAnswer((_) async => dailySpaceFact);
+        when(() => spaceFactRepository.addDailySpaceFact(
+            date: any(named: 'date'),
+            spaceFact: dailySpaceFact)).thenAnswer((_) async => {});
 
         return sut;
       },
