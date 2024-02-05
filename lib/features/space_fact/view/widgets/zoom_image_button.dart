@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:photo_view/photo_view.dart';
 
 class ZoomImageButton extends StatelessWidget {
@@ -35,7 +38,7 @@ class ZoomImageButton extends StatelessWidget {
                     url,
                   ),
                   minScale: PhotoViewComputedScale.contained,
-                  maxScale: PhotoViewComputedScale.covered * 4,
+                  maxScale: PhotoViewComputedScale.covered * 6,
                   controller: PhotoViewController(),
                   tightMode: true,
                 ),

@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
+// Project imports:
 import 'package:stellar_secrets/features/home/view/no_network_screen.dart';
 import 'package:stellar_secrets/features/home/viewModel/internet_connection_provider.dart';
 import 'package:stellar_secrets/features/space_fact/view/space_fact_screen.dart';

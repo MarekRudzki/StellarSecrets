@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:jumping_dot/jumping_dot.dart';
 
 class LoadingHDInfo extends StatelessWidget {

@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:stellar_secrets/features/home/view/home_screen.dart';
 import 'package:stellar_secrets/features/home/viewModel/internet_connection_provider.dart';
 import 'package:stellar_secrets/features/space_fact/model/local_datasources/hive_local_datasource.dart';

@@ -1,15 +1,20 @@
+// Dart imports:
 import 'dart:async';
+import 'dart:ui' as ui;
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
+
+// Project imports:
 import 'package:stellar_secrets/features/space_fact/view/widgets/fact_title.dart';
 import 'package:stellar_secrets/features/space_fact/view/widgets/hd_image_button.dart';
 import 'package:stellar_secrets/features/space_fact/view/widgets/loading_hd_info.dart';
 import 'package:stellar_secrets/features/space_fact/view/widgets/new_fact_button.dart';
 import 'package:stellar_secrets/features/space_fact/view/widgets/photo_copyright.dart';
 import 'package:stellar_secrets/features/space_fact/view/widgets/photo_date.dart';
-import 'dart:ui' as ui;
-
 import 'package:stellar_secrets/features/space_fact/view/widgets/zoom_image_button.dart';
 
 class FactDetails extends HookWidget {
