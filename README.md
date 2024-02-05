@@ -47,10 +47,10 @@ Project was created with:
 3. Paste copied link and hit enter.
 4. Congrats, you have successfully cloned this repository in your computer!
 5. Open project in IDE of your choice.
-6. Get a free RAWG API key from the [NASA](https://api.nasa.gov/).
+6. Get a free NASA API key from the [NASA](https://api.nasa.gov/).
 7. In main app folder create a file called `.env` including:
    ```sh
-   NASA_api_key = Your_RAWG_Key
+   NASA_api_key = Your_NASA_Key
    ```
 8. Run the app.
    
